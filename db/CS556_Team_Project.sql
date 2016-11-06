@@ -68,43 +68,6 @@ CREATE TABLE IF NOT EXISTS daycaredb.emergency_contact_profiles (
     PRIMARY KEY (id)
 );
 
-# create table for child profiles
-CREATE TABLE IF NOT EXISTS daycaredb.child_profiles (
-	# unique child profile id
-    id INT AUTO_INCREMENT UNIQUE,
-    # enrollment date (date which the parent fill the forms)
-    enrollment_date DATE NOT NULL,
-    # start date (date which the child start to come to daycare)
-    start_date DATE,
-    # withdraw date ( date which the child leave the daycare)
-    withdraw_date DATE,
-    # withdraw reason
-    withdraw_reason VARCHAR(20),
-	# english first name
-    first_name VARCHAR(20) NOT NULL,
-    # english last name
-    last_name VARCHAR(20) NOT NULL,
-    # chinese full name
-    chinese_name VARCHAR(20),
-    # chinese nick name
-    nick_name VARCHAR(20),
-    # gender
-    sex CHAR(6) NOT NULL,
-    # age
-    age DATE NOT NULL,
-    # birthday in format of MM/DD/YYYY
-    birthday DATE NOT NULL,
-    # child's primary language
-    primary_language VARCHAR(20) NOT NULL,
-    # home address
-    address VARCHAR(50) NOT NULL,
-    # landline phone number
-    phone CHAR(10),
-    # child status with daycare (ex: waiting list, current, pass, TBD)
-    child_status VARCHAR(15),
-    PRIMARY KEY (id)
-);
-
 # create table for child's medical history
 CREATE TABLE IF NOT EXISTS daycaredb.medical_history_records (
 	# unique medical history records id
@@ -181,6 +144,68 @@ CREATE TABLE IF NOT EXISTS daycaredb.medical_care_profiles (
     # additional health insurance policy number
     additional_health_insurance_number VARCHAR(20) NOT NULL,
     PRIMARY KEY (id)
+);
+
+
+# create table for child profiles
+CREATE TABLE IF NOT EXISTS daycaredb.child_profiles (
+	# unique child profile id
+    id INT AUTO_INCREMENT UNIQUE,
+	# foreign key for primary contact
+    mom_id INT,
+    # foreign key for primary contact
+    dad_id INT,
+    # foreign key for emergency contact
+    emer_1_id INT,
+    # foreign key for emergency contact
+    emer_2_id INT,
+    # foreign key for medical history
+    medical_history_id INT,
+    # foreign key for medical care
+    medical_care_id INT,
+    # enrollment date (date which the parent fill the forms)
+    enrollment_date DATE NOT NULL,
+    # start date (date which the child start to come to daycare)
+    start_date DATE,
+    # withdraw date ( date which the child leave the daycare)
+    withdraw_date DATE,
+    # withdraw reason
+    withdraw_reason VARCHAR(20),
+	# english first name
+    first_name VARCHAR(20) NOT NULL,
+    # english last name
+    last_name VARCHAR(20) NOT NULL,
+    # chinese full name
+    chinese_name VARCHAR(20),
+    # chinese nick name
+    nick_name VARCHAR(20),
+    # gender
+    sex CHAR(6) NOT NULL,
+    # age
+    age DATE NOT NULL,
+    # birthday in format of MM/DD/YYYY
+    birthday DATE NOT NULL,
+    # child's primary language
+    primary_language VARCHAR(20) NOT NULL,
+    # home address
+    address VARCHAR(50) NOT NULL,
+    # landline phone number
+    phone CHAR(10),
+    # child status with daycare (ex: waiting list, current, pass, TBD)
+    child_status VARCHAR(15),
+    PRIMARY KEY (id),
+    FOREIGN KEY (mom_id)
+    REFERENCES daycaredb.primary_contact_profiles (id),
+    FOREIGN KEY (dad_id)
+    REFERENCES daycaredb.primary_contact_profiles (id),
+    FOREIGN KEY (emer_1_id)
+    REFERENCES daycaredb.emergency_contact_profiles (id), 
+    FOREIGN KEY (emer_2_id)
+    REFERENCES daycaredb.emergency_contact_profiles (id), 
+    FOREIGN KEY (medical_history_id)
+    REFERENCES daycaredb.medical_history_records (id),
+    FOREIGN KEY (medical_care_id)
+    REFERENCES daycaredb.medical_care_profiles (id)
 );
 
 # create table for sign in/out record
