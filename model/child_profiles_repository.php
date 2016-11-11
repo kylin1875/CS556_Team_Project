@@ -32,6 +32,10 @@ class ChildProfilesRepository {
     public static function getchild($child_id) {
         global $db;
         $query = "SELECT * FROM daycaredb.child_profiles WHERE id = $child_id";
+        $row_count = $db->exec($query);
+        if($row_count == 0){
+            return null;
+        }
         $result = $db->query($query);
         $row = $result->fetch();
         $child = new ChildProfile($row['id'], $row['mum_id'], $row['dad_id'], $row['emer_1_id'], $row['emer_2_id']
