@@ -1,15 +1,4 @@
-/* 
- * Student Info: Name=wei jin, ID=9983
- * Subject: Course526_HWN1_fall_2016
- * Author: yewuy
- * Filename: school_db.sql
- * Date and Time: Nov 9, 2016 2:12:38 PM
- * Project Name: iphoneproject
- */
-/**
- * Author:  yewuy
- * Created: Nov 9, 2016
- */
+
 # reset database
 DROP DATABASE IF EXISTS daycaredb;
 # create database for daycare
@@ -67,7 +56,7 @@ CREATE TABLE IF NOT EXISTS daycaredb.medical_history_records (
     scarlet_fever DATE,
     measles DATE,
     german_measles DATE,
-    mumps DATE,
+    mumps_ DATE,
     pertussis DATE,
     other_illnesses VARCHAR(200),
     medical_history VARCHAR(300),
@@ -123,17 +112,17 @@ CREATE TABLE IF NOT EXISTS daycaredb.child_profiles (
     child_status VARCHAR(15),
     PRIMARY KEY (id),
     FOREIGN KEY (mom_id)
-        REFERENCES daycaredb.primary_contact_profiles (id) ON DELETE CASCADE ON UPDATE CASCADE,
+        REFERENCES daycaredb.primary_contact_profiles (id),
     FOREIGN KEY (dad_id)
-        REFERENCES daycaredb.primary_contact_profiles (id) ON DELETE CASCADE ON UPDATE CASCADE,
+        REFERENCES daycaredb.primary_contact_profiles (id),
     FOREIGN KEY (emer_1_id)
-        REFERENCES daycaredb.emergency_contact_profiles (id) ON DELETE CASCADE ON UPDATE CASCADE,
+        REFERENCES daycaredb.emergency_contact_profiles (id),
     FOREIGN KEY (emer_2_id)
-        REFERENCES daycaredb.emergency_contact_profiles (id) ON DELETE CASCADE ON UPDATE CASCADE,
+        REFERENCES daycaredb.emergency_contact_profiles (id),
     FOREIGN KEY (medical_history_id)
-        REFERENCES daycaredb.medical_history_records (id) ON DELETE CASCADE ON UPDATE CASCADE,
+        REFERENCES daycaredb.medical_history_records (id),
     FOREIGN KEY (medical_care_id)
-        REFERENCES daycaredb.medical_care_profiles (id) ON DELETE CASCADE ON UPDATE CASCADE
+        REFERENCES daycaredb.medical_care_profiles (id)
 );
 
 CREATE TABLE IF NOT EXISTS daycaredb.signin_records (
@@ -144,7 +133,7 @@ CREATE TABLE IF NOT EXISTS daycaredb.signin_records (
     sign_out_timestamp DATETIME,
     PRIMARY KEY (id),
     FOREIGN KEY (child_id)
-        REFERENCES daycaredb.child_profiles (id) ON DELETE CASCADE ON UPDATE CASCADE
+        REFERENCES daycaredb.child_profiles (id)
 );
 
 CREATE TABLE IF NOT EXISTS daycaredb.daily_records (
@@ -154,14 +143,14 @@ CREATE TABLE IF NOT EXISTS daycaredb.daily_records (
     emotion VARCHAR(10),
     sleep_duration TIME NOT NULL,
     body_temperature TINYINT NOT NULL,
-    defecation TINYINT NOT NULL,# 排便
+    defecation TINYINT NOT NULL,
     meal TINYTEXT,
     activity TEXT,
     defecation_at_home TINYINT,
     sleep_status TEXT,
     PRIMARY KEY (id),
     FOREIGN KEY (child_id)
-        REFERENCES daycaredb.child_profiles (id) ON DELETE CASCADE ON UPDATE CASCADE
+        REFERENCES daycaredb.child_profiles (id)
 ); 
 
 insert into daycaredb.primary_contact_profiles values

@@ -1,14 +1,15 @@
 <?php
 
-/* 
- * Student Info: Name=wei jin, ID=9983
- * Subject: Course526_HWN1_fall_2016
- * Author: yewuy
- * Filename: child_profile_repository.php
+/*
+ * Student Info: Name=Wei Jin, ID=9983
+ * Subject: CS556_Team_Project_Fall_2016
+ * Author: Wei Jin
+ * Filename: child_profiles_repository.php
  * Date and Time: Nov 9, 2016 6:29:16 PM
- * Project Name: iphoneproject
+ * Project Name: CS556_Team_Project
  */
-class ChildProfileRepository {
+
+class ChildProfilesRepository {
 
     public static function getChilds() {
         global $db;
@@ -27,21 +28,22 @@ class ChildProfileRepository {
         }
         return $childs;
     }
+
     public static function getchild($child_id) {
         global $db;
         $query = "SELECT * FROM daycaredb.child_profiles WHERE id = $child_id";
         $result = $db->query($query);
         $row = $result->fetch();
         $child = new ChildProfile($row['id'], $row['mum_id'], $row['dad_id'], $row['emer_1_id'], $row['emer_2_id']
-                    , $row['medical_history_id'], $row['medical_care_id'], $row['enrollment_date'], $row['start_date']
-                    , $row['withdraw_date'], $row['withdraw_reason'], $row['first_name'], $row['last_name']
-                    , $row['chinese_name'], $row['nick_name'], $row['sex'], $row['age'], $row['birthday'], $row['primary_language'], $row['address']
-                    , $row['phone'], $row['child_status']);
+                , $row['medical_history_id'], $row['medical_care_id'], $row['enrollment_date'], $row['start_date']
+                , $row['withdraw_date'], $row['withdraw_reason'], $row['first_name'], $row['last_name']
+                , $row['chinese_name'], $row['nick_name'], $row['sex'], $row['age'], $row['birthday'], $row['primary_language'], $row['address']
+                , $row['phone'], $row['child_status']);
         return $child;
     }
-    
+
     public static function deleteChild($child_id) {
-        global $db;      
+        global $db;
         $child = getchild($child_id);
         $mum_id = $child->getMumID();
         $dad_id = $child->getDadID();
@@ -88,6 +90,5 @@ class ChildProfileRepository {
         $row_count = $db->exec($query);
         return $row_count;
     }
-    
-}
 
+}
