@@ -1,4 +1,3 @@
-WEI JIN
 # reset database
 DROP DATABASE IF EXISTS daycaredb;
 # create database for daycare
