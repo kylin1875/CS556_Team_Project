@@ -1,16 +1,15 @@
 //
-//  PopUpViewController.swift
+//  MedicalHistoryViewController.swift
 //  Project
 //
-//  Created by Zhiwei Zheng on 11/12/16.
+//  Created by Zhiwei Zheng on 11/13/16.
 //  Copyright © 2016 Zhiwei Zheng 10635. All rights reserved.
 //
 
-
 import UIKit
 
-class PopUpViewController: UIViewController {
-    
+class MedicalHistoryViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad() //show selected view to the screen
         self.showAnimate()
@@ -55,6 +54,7 @@ class PopUpViewController: UIViewController {
                 }
         })
     }
+    
     /*
      // MARK: - Navigation
      
@@ -64,5 +64,6 @@ class PopUpViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
+
+
 }

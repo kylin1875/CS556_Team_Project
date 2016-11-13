@@ -14,7 +14,13 @@
 		411465F31DD82915005C4CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 411465F11DD82915005C4CAC /* LaunchScreen.storyboard */; };
 		411465FE1DD82915005C4CAC /* ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411465FD1DD82915005C4CAC /* ProjectTests.swift */; };
 		411466091DD82915005C4CAC /* ProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411466081DD82915005C4CAC /* ProjectUITests.swift */; };
-		411466171DD82A4D005C4CAC /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411466161DD82A4D005C4CAC /* PopUpViewController.swift */; };
+		4163E67E1DD8760D0043E881 /* ChildProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163E67D1DD8760D0043E881 /* ChildProfileViewController.swift */; };
+		4163E6801DD87B8D0043E881 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163E67F1DD87B8D0043E881 /* SignInViewController.swift */; };
+		4163E6821DD87BA60043E881 /* DailyRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163E6811DD87BA60043E881 /* DailyRecordViewController.swift */; };
+		4163E6841DD87BC10043E881 /* MedicalHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163E6831DD87BC10043E881 /* MedicalHistoryViewController.swift */; };
+		4163E6861DD87BD40043E881 /* MedicalCareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163E6851DD87BD40043E881 /* MedicalCareViewController.swift */; };
+		4163E6881DD87BFE0043E881 /* EmergencyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163E6871DD87BFE0043E881 /* EmergencyContactViewController.swift */; };
+		4163E68A1DD87C0F0043E881 /* PrimaryContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4163E6891DD87C0F0043E881 /* PrimaryContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +54,13 @@
 		411466041DD82915005C4CAC /* ProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		411466081DD82915005C4CAC /* ProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectUITests.swift; sourceTree = "<group>"; };
 		4114660A1DD82915005C4CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		411466161DD82A4D005C4CAC /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		4163E67D1DD8760D0043E881 /* ChildProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildProfileViewController.swift; sourceTree = "<group>"; };
+		4163E67F1DD87B8D0043E881 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		4163E6811DD87BA60043E881 /* DailyRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyRecordViewController.swift; sourceTree = "<group>"; };
+		4163E6831DD87BC10043E881 /* MedicalHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicalHistoryViewController.swift; sourceTree = "<group>"; };
+		4163E6851DD87BD40043E881 /* MedicalCareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicalCareViewController.swift; sourceTree = "<group>"; };
+		4163E6871DD87BFE0043E881 /* EmergencyContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactViewController.swift; sourceTree = "<group>"; };
+		4163E6891DD87C0F0043E881 /* PrimaryContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +113,17 @@
 			children = (
 				411465E81DD82915005C4CAC /* AppDelegate.swift */,
 				411465EA1DD82915005C4CAC /* ViewController.swift */,
-				411466161DD82A4D005C4CAC /* PopUpViewController.swift */,
 				411465EC1DD82915005C4CAC /* Main.storyboard */,
 				411465EF1DD82915005C4CAC /* Assets.xcassets */,
 				411465F11DD82915005C4CAC /* LaunchScreen.storyboard */,
 				411465F41DD82915005C4CAC /* Info.plist */,
+				4163E67D1DD8760D0043E881 /* ChildProfileViewController.swift */,
+				4163E67F1DD87B8D0043E881 /* SignInViewController.swift */,
+				4163E6811DD87BA60043E881 /* DailyRecordViewController.swift */,
+				4163E6831DD87BC10043E881 /* MedicalHistoryViewController.swift */,
+				4163E6851DD87BD40043E881 /* MedicalCareViewController.swift */,
+				4163E6871DD87BFE0043E881 /* EmergencyContactViewController.swift */,
+				4163E6891DD87C0F0043E881 /* PrimaryContactViewController.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -262,9 +280,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4163E6801DD87B8D0043E881 /* SignInViewController.swift in Sources */,
+				4163E6881DD87BFE0043E881 /* EmergencyContactViewController.swift in Sources */,
+				4163E6821DD87BA60043E881 /* DailyRecordViewController.swift in Sources */,
 				411465EB1DD82915005C4CAC /* ViewController.swift in Sources */,
-				411466171DD82A4D005C4CAC /* PopUpViewController.swift in Sources */,
+				4163E6861DD87BD40043E881 /* MedicalCareViewController.swift in Sources */,
+				4163E68A1DD87C0F0043E881 /* PrimaryContactViewController.swift in Sources */,
+				4163E67E1DD8760D0043E881 /* ChildProfileViewController.swift in Sources */,
 				411465E91DD82915005C4CAC /* AppDelegate.swift in Sources */,
+				4163E6841DD87BC10043E881 /* MedicalHistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +533,7 @@
 				4114660F1DD82915005C4CAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		411466101DD82915005C4CAC /* Build configuration list for PBXNativeTarget "ProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +542,7 @@
 				411466121DD82915005C4CAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		411466131DD82915005C4CAC /* Build configuration list for PBXNativeTarget "ProjectUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +551,7 @@
 				411466151DD82915005C4CAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
