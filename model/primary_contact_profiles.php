@@ -1,11 +1,11 @@
 <?php
 
 /*  
- * Student Info: Name=Arvin Mai, ID=10010
+ * Student Info: Name=Wei Jin, ID=9983
  * Subject: NPU_2016_Fall_CS556(A)_Team_Project
  * Author: Arvin-tcm 
  * Filename: primary_contact_profiles.php 
- * Date and Time: Nov 10, 2016 11:18:08 PM 
+ * Date and Time: Nov 12, 2016 11:46:08 PM 
  * Project Name: CS556_Team_Project 
  */ 
 
