@@ -59,7 +59,7 @@ class ChildProfilesRepository {
         $row_count = $db->exec($query);   //after drop the child need to delete related info table **************************
         return $row_count;
     }
-
+    // take a $child as parameter, insert into DB and return the "id" as integer which auto assign by the database, 0 if failed
     public static function addChild($child) {
         global $db;
         $child_id = $child->getID();
