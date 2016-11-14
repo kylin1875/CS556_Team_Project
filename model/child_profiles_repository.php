@@ -10,7 +10,7 @@
  */
 
 class ChildProfilesRepository {
-
+    // return all records as an array
     public static function getChilds() {
         global $db;
         $query = 'SELECT * FROM daycaredb.child_profiles'
@@ -28,10 +28,10 @@ class ChildProfilesRepository {
         }
         return $childs;
     }
-
-    public static function getchild($child_id) {
+    // return one record by id, or NULL if no match 
+    public static function getChildById($childId) {
         global $db;
-        $query = "SELECT * FROM daycaredb.child_profiles WHERE id = $child_id";
+        $query = "SELECT * FROM daycaredb.child_profiles WHERE id = $childId";
         $row_count = $db->exec($query);
         if($row_count == 0){
             return null;
@@ -45,17 +45,17 @@ class ChildProfilesRepository {
                 , $row['phone'], $row['child_status']);
         return $child;
     }
-
-    public static function deleteChild($child_id) {
+    // remove one record from DB, return 1 if record remove successed or 0 if failed
+    public static function deleteChild($childId) {
         global $db;
-        $child = getchild($child_id);
+        $child = getchild($childId);
         $mum_id = $child->getMumID();
         $dad_id = $child->getDadID();
         $emre1id = $child->getEmer1ID();
         $emer2id = $child->getEmer2ID();
         $medicalhisid = $child->getMedicalHisID();
         $medicalcareid = $child->getMedicalCareID();
-        $query = "DELETE FROM daycaredb.child_profiles WHERE id = $child_id";
+        $query = "DELETE FROM daycaredb.child_profiles WHERE id = $childId";
         $row_count = $db->exec($query);   //after drop the child need to delete related info table **************************
         return $row_count;
     }
@@ -91,8 +91,10 @@ class ChildProfilesRepository {
                   $medicalcareid, $enrollment_date, $start_date, $withdraw_date, $withdraw_reason,
                   $first_name, $last_name, $chinese_name, $nick_name, $sex, $age, $birthday, $primary_language,
                   $address, $phone, $child_status)";
-        $row_count = $db->exec($query);
-        return $row_count;
+        $db->exec($query);
+        $query = "SELECT last_insert_id();";
+        $childId = $db->exec($query);
+        return $childId;
     }
 
 }
