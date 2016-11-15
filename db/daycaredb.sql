@@ -1,4 +1,4 @@
-﻿# Author: Arvin Mai Wei Jin
+﻿# Author: Arvin Mai & Wei Jin
 # ID: 10010
 # Subject: CS556_Project_MySQL_Configuration
 # Time: 11/03/2016

@@ -48,15 +48,15 @@ class ChildProfilesRepository {
     // remove one record from DB, return 1 if record remove successed or 0 if failed
     public static function deleteChild($childId) {
         global $db;
-        $child = getchild($childId);
-        $mum_id = $child->getMumID();
-        $dad_id = $child->getDadID();
-        $emre1id = $child->getEmer1ID();
-        $emer2id = $child->getEmer2ID();
-        $medicalhisid = $child->getMedicalHisID();
-        $medicalcareid = $child->getMedicalCareID();
+        //$child = getchild($childId);
+        //$mum_id = $child->getMumID();
+        //$dad_id = $child->getDadID();
+        //$emre1id = $child->getEmer1ID();
+        //$emer2id = $child->getEmer2ID();
+        //$medicalhisid = $child->getMedicalHisID();
+        //$medicalcareid = $child->getMedicalCareID();
         $query = "DELETE FROM daycaredb.child_profiles WHERE id = $childId";
-        $row_count = $db->exec($query);   //after drop the child need to delete related info table **************************
+        $row_count = $db->exec($query);   //after drop the child maybe need to delete related info table
         return $row_count;
     }
     // take a $child as parameter, insert into DB and return the "id" as integer which auto assign by the database, 0 if failed
