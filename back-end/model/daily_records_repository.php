@@ -12,8 +12,7 @@ class DailyRecordsRepository {
     // return all records as an array
     public static function getDailyRecords() {
         global $db;
-        $query = 'SELECT * FROM daycaredb.daily_records'
-                . 'ORDER BY id'; //'OREDER
+        $query = 'SELECT * FROM daycaredb.daily_records ORDER BY id'; 
         $result = $db->query($query);
         $dailyrecords = array();
         foreach ($result as $row) {
@@ -62,9 +61,9 @@ class DailyRecordsRepository {
         global $db;
         $dailyrecords = array();
         if($finalDate == NULL){
-            $query = 'SELECT * FROM daycaredb.daily_records WHERE record_date = $initialDate';
+            $query = "SELECT * FROM daycaredb.daily_records WHERE record_date = $initialDate";
         }else{
-            $query = 'SELECT * FROM daycaredb.daily_records WHERE record_date BETWEEN $initialDate AND $finalDate';
+            $query = "SELECT * FROM daycaredb.daily_records WHERE record_date BETWEEN $initialDate AND $finalDate";
         }
         $row_count = $db->exec($query);
         if($row_count == 0){
@@ -91,7 +90,6 @@ class DailyRecordsRepository {
     // or return 0 if insert failed
     public static function addDailyRecord($dailyRecord) {
         global $db;
-        $id = $dailyRecord->getId();
         $child_id = $dailyRecord->getChild_id(); 
         $record_date = $dailyRecord->getRecord_date(); 
         $emotion = $dailyRecord->getEmotion(); 
@@ -102,8 +100,8 @@ class DailyRecordsRepository {
         $activity = $dailyRecord->getActivity(); 
         $defecation_at_home = $dailyRecord->getDefecation_at_home();
         $sleep_status = $dailyRecord->getSleep_status();
-        $query = "INSERT INTO daycaredb.daily_records (id, child_id, record_date, emotion, sleep_duration, body_temperature, 
-            defecation, meal, activity, defecation_at_home, sleep_status) VALUES ($id, $child_id, $record_date, $emotion, $sleep_duration, $body_temperature, 
+        $query = "INSERT INTO daycaredb.daily_records (child_id, record_date, emotion, sleep_duration, body_temperature, 
+            defecation, meal, activity, defecation_at_home, sleep_status) VALUES ($child_id, $record_date, $emotion, $sleep_duration, $body_temperature, 
             $defecation, $meal, $activity, $defecation_at_home, $sleep_status)";
         $db->exec($query);
         $query = "SELECT last_insert_id();";

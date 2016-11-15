@@ -12,8 +12,7 @@ class EmergencyContactProfilesRepository {
     // return all records as an array
     public static function getEmergencyContactProfiles() {
         global $db;
-        $query = 'SELECT * FROM daycaredb.emergency_contact_profiles'
-                . 'ORDER BY id'; //'OREDER
+        $query = "SELECT * FROM daycaredb.emergency_contact_profiles ORDER BY id"; 
         $result = $db->query($query);
         $emergencyContactProfiles = array();
         foreach ($result as $row) {
@@ -74,7 +73,6 @@ class EmergencyContactProfilesRepository {
     // or return 0 if insert failed
     public static function addEmergencyContactProfile($emergencyContactProfile) {
         global $db;
-        $id = $emergencyContactProfile->getId();
         $relationship = $emergencyContactProfile->getRelationship();
         $first_name = $emergencyContactProfile->getFirst_name();
         $last_name = $emergencyContactProfile->getlast_name();
@@ -85,9 +83,9 @@ class EmergencyContactProfilesRepository {
         $work_phone_number = $emergencyContactProfile->getWork_phone_number();
         $cell_phone_number = $emergencyContactProfile->getCell_phone_number();
         $note = $emergencyContactProfile->getNote();
-        $query = "INSERT INTO daycaredb.emergency_contact_profiles (id, relationship, first_name, last_name, 
+        $query = "INSERT INTO daycaredb.emergency_contact_profiles (relationship, first_name, last_name, 
                 chinese_name, home_phone_number, occupation, work_time, work_phone_number, cell_phone_number, note) 
-                VALUES ($id, $relationship, $first_name, $last_name, 
+                VALUES ($relationship, $first_name, $last_name, 
                 $chinese_name, $home_phone_number, $occupation, $work_time, $work_phone_number, $cell_phone_number, $note)";
         $db->exec($query);
         $query = "SELECT last_insert_id();";
