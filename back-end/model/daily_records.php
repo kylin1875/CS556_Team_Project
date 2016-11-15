@@ -11,7 +11,8 @@
 
 class DailyRecords {
 
-    private $id, $child_id, $record_date, $emotion, $sleep_duration, $body_temperature, $defecation, $meal, $activity, $defecation_at_home, $sleep_status;
+    private $id, $child_id, $record_date, $emotion, $sleep_duration, $body_temperature, 
+            $defecation, $meal, $activity, $defecation_at_home, $sleep_status;
 
     function __construct($id, $child_id, $record_date, $emotion, $sleep_duration, $body_temperature, $defecation, $meal, $activity, $defecation_at_home, $sleep_status) {
         $this->id = $id;

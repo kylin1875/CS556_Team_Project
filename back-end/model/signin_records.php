@@ -3,7 +3,7 @@
 /*  
  * Student Info: Name=Wei Jin, ID=9983
  * Subject: NPU_2016_Fall_CS556(A)_Team_Project
- * Author: Arvin-tcm 
+ * Author: Wei Jin  
  * Filename: signin_records.php 
  * Date and Time: Nov 12, 2016 11:46:07 PM 
  * Project Name: CS556_Team_Project 
