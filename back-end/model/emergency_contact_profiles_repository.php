@@ -41,10 +41,11 @@ class EmergencyContactProfilesRepository {
     // return all records match the child id, or NULL if no match
     public static function getEmergencyContactProfilesByChildId($childId) {
        global $db;
+       $child = DailyRecordsRepository::getChildById($childId);
        $emergencyContactProfiles = array();
        $emergencyContactProfileid = array();
-       $emergencyContactProfileid[0] = $childId->getEmer_1_id();
-       $emergencyContactProfileid[1] = $childId->getEmer_2_id();
+       $emergencyContactProfileid[0] = $child->getEmer_1_id();
+       $emergencyContactProfileid[1] = $child->getEmer_2_id();
        for($i=0;$i<2;$i++){
        $query = "SELECT * FROM daycaredb.emergency_contact_profiles WHERE id = $emergencyContactProfileid[$i]";
        $row_count = $db->exec($query);
@@ -75,7 +76,7 @@ class EmergencyContactProfilesRepository {
         global $db;
         $relationship = $emergencyContactProfile->getRelationship();
         $first_name = $emergencyContactProfile->getFirst_name();
-        $last_name = $emergencyContactProfile->getlast_name();
+        $last_name = $emergencyContactProfile->getLast_name();
         $chinese_name = $emergencyContactProfile->getChinese_name();
         $home_phone_number = $emergencyContactProfile->getHome_phone_number();
         $occupation = $emergencyContactProfile->getOccupation();

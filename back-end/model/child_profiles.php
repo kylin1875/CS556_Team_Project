@@ -11,13 +11,13 @@
 
 class ChildProfiles {
 
-    private $id, $mum_id, $dad_id, $emer_1_id, $emer_2_id, $medical_history_id,
+    private $id, $mom_id, $dad_id, $emer_1_id, $emer_2_id, $medical_history_id,
             $medical_care_id, $enrollment_date, $start_date, $withdraw_date, $withdraw_reason,
             $first_name, $last_name, $chinese_name, $nick_name, $sex, $age, $birthday, $primary_language,
             $address, $phone, $child_status;
     function __construct($id, $mum_id, $dad_id, $emer_1_id, $emer_2_id, $medical_history_id, $medical_care_id, $enrollment_date, $start_date, $withdraw_date, $withdraw_reason, $first_name, $last_name, $chinese_name, $nick_name, $sex, $age, $birthday, $primary_language, $address, $phone, $child_status) {
         $this->id = $id;
-        $this->mum_id = $mum_id;
+        $this->mom_id = $mum_id;
         $this->dad_id = $dad_id;
         $this->emer_1_id = $emer_1_id;
         $this->emer_2_id = $emer_2_id;
@@ -44,7 +44,7 @@ class ChildProfiles {
     }
 
     function getMum_id() {
-        return $this->mum_id;
+        return $this->mom_id;
     }
 
     function getDad_id() {
@@ -132,7 +132,7 @@ class ChildProfiles {
     }
 
     function setMum_id($mum_id) {
-        $this->mum_id = $mum_id;
+        $this->mom_id = $mum_id;
     }
 
     function setDad_id($dad_id) {
