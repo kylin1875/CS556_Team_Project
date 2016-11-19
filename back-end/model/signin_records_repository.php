@@ -41,7 +41,6 @@ class SignIn_RecordsRepository {
     public static function getSignInRecordsByChildId($childId) {
         // return all records match the child id, or NULL if no match
         global $db;
-        $child = DailyRecordsRepository::getChildById($childId);
         $signInRecords = array();
         $query = "SELECT * FROM daycaredb.signin_records WHERE child_id = $childId";
         $row_count = $db->exec($query);
