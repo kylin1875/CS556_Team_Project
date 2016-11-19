@@ -10,10 +10,11 @@
  */
 
 class ChildProfilesRepository {
+
     // return all records as an array
     public static function getChilds() {
         global $db;
-        $query = 'SELECT * FROM daycaredb.child_profiles ORDER BY id'; 
+        $query = 'SELECT * FROM daycaredb.child_profiles ORDER BY id';
         $result = $db->query($query);
         $childs = array();
         foreach ($result as $row) {
@@ -27,12 +28,13 @@ class ChildProfilesRepository {
         }
         return $childs;
     }
+
     // return one record by id, or NULL if no match 
     public static function getChildById($childId) {
         global $db;
         $query = "SELECT * FROM daycaredb.child_profiles WHERE id = $childId";
         $row_count = $db->exec($query);
-        if($row_count == 0){
+        if ($row_count == 0) {
             return null;
         }
         $result = $db->query($query);
@@ -44,66 +46,70 @@ class ChildProfilesRepository {
                 , $row['phone'], $row['child_status']);
         return $child;
     }
-     // return one record by first name and last name, or NULL if no match 
-    public static function getChildsByName($fname,$lname) {
+
+    // return one record by first name and last name, or NULL if no match 
+    public static function getChildsByName($fname, $lname) {
         global $db;
         $query = "SELECT * FROM daycaredb.child_profiles WHERE first_name = $fname AND last_name = $lname";
         $row_count = $db->exec($query);
-        if($row_count == 0){
+        if ($row_count == 0) {
             return null;
         }
         $result = $db->query($query);
         $childs = array();
         foreach ($result as $row) {
-        $child = new ChildProfile($row['id'], $row['mom_id'], $row['dad_id'], $row['emer_1_id'], $row['emer_2_id']
-                , $row['medical_history_id'], $row['medical_care_id'], $row['enrollment_date'], $row['start_date']
-                , $row['withdraw_date'], $row['withdraw_reason'], $row['first_name'], $row['last_name']
-                , $row['chinese_name'], $row['nick_name'], $row['sex'], $row['age'], $row['birthday'], $row['primary_language'], $row['address']
-                , $row['phone'], $row['child_status']);
-                $childs[] = $child;
+            $child = new ChildProfile($row['id'], $row['mom_id'], $row['dad_id'], $row['emer_1_id'], $row['emer_2_id']
+                    , $row['medical_history_id'], $row['medical_care_id'], $row['enrollment_date'], $row['start_date']
+                    , $row['withdraw_date'], $row['withdraw_reason'], $row['first_name'], $row['last_name']
+                    , $row['chinese_name'], $row['nick_name'], $row['sex'], $row['age'], $row['birthday'], $row['primary_language'], $row['address']
+                    , $row['phone'], $row['child_status']);
+            $childs[] = $child;
         }
         return $childs;
     }
+
     // return one record by chinese name, or NULL if no match 
     public static function getChildsByChineseName($name) {
         global $db;
         $query = "SELECT * FROM daycaredb.child_profiles WHERE chinese_name = $name";
         $row_count = $db->exec($query);
-        if($row_count == 0){
+        if ($row_count == 0) {
             return null;
         }
         $result = $db->query($query);
         $childs = array();
         foreach ($result as $row) {
-        $child = new ChildProfile($row['id'], $row['mom_id'], $row['dad_id'], $row['emer_1_id'], $row['emer_2_id']
-                , $row['medical_history_id'], $row['medical_care_id'], $row['enrollment_date'], $row['start_date']
-                , $row['withdraw_date'], $row['withdraw_reason'], $row['first_name'], $row['last_name']
-                , $row['chinese_name'], $row['nick_name'], $row['sex'], $row['age'], $row['birthday'], $row['primary_language'], $row['address']
-                , $row['phone'], $row['child_status']);
-                $childs[] = $child;
+            $child = new ChildProfile($row['id'], $row['mom_id'], $row['dad_id'], $row['emer_1_id'], $row['emer_2_id']
+                    , $row['medical_history_id'], $row['medical_care_id'], $row['enrollment_date'], $row['start_date']
+                    , $row['withdraw_date'], $row['withdraw_reason'], $row['first_name'], $row['last_name']
+                    , $row['chinese_name'], $row['nick_name'], $row['sex'], $row['age'], $row['birthday'], $row['primary_language'], $row['address']
+                    , $row['phone'], $row['child_status']);
+            $childs[] = $child;
         }
         return $childs;
     }
+
     // return one record by phone number, or NULL if no match 
     public static function getChildsByPhone($phone) {
         global $db;
         $query = "SELECT * FROM daycaredb.child_profiles WHERE phone = $phone";
         $row_count = $db->exec($query);
-        if($row_count == 0){
+        if ($row_count == 0) {
             return null;
         }
         $result = $db->query($query);
         $childs = array();
         foreach ($result as $row) {
-        $child = new ChildProfile($row['id'], $row['mom_id'], $row['dad_id'], $row['emer_1_id'], $row['emer_2_id']
-                , $row['medical_history_id'], $row['medical_care_id'], $row['enrollment_date'], $row['start_date']
-                , $row['withdraw_date'], $row['withdraw_reason'], $row['first_name'], $row['last_name']
-                , $row['chinese_name'], $row['nick_name'], $row['sex'], $row['age'], $row['birthday'], $row['primary_language'], $row['address']
-                , $row['phone'], $row['child_status']);
-                $childs[] = $child;
+            $child = new ChildProfile($row['id'], $row['mom_id'], $row['dad_id'], $row['emer_1_id'], $row['emer_2_id']
+                    , $row['medical_history_id'], $row['medical_care_id'], $row['enrollment_date'], $row['start_date']
+                    , $row['withdraw_date'], $row['withdraw_reason'], $row['first_name'], $row['last_name']
+                    , $row['chinese_name'], $row['nick_name'], $row['sex'], $row['age'], $row['birthday'], $row['primary_language'], $row['address']
+                    , $row['phone'], $row['child_status']);
+            $childs[] = $child;
         }
         return $childs;
     }
+
     // remove one record from DB, return 1 if record remove successed or 0 if failed
     public static function deleteChild($childId) {
         global $db;
@@ -118,6 +124,7 @@ class ChildProfilesRepository {
         $row_count = $db->exec($query);   //after drop the child maybe need to delete related info table
         return $row_count;
     }
+
     // take a $child as parameter, insert into DB and return the "id" as integer which auto assign by the database, 0 if failed
     public static function addChild($child) {
         global $db;

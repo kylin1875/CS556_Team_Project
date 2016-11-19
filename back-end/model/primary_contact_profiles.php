@@ -1,17 +1,19 @@
 <?php
 
-/*  
+/*
  * Student Info: Name=Wei Jin, ID=9983
  * Subject: NPU_2016_Fall_CS556(A)_Team_Project
  * Author: Wei Jin 
  * Filename: primary_contact_profiles.php 
  * Date and Time: Nov 12, 2016 11:46:08 PM 
  * Project Name: CS556_Team_Project 
- */ 
+ */
 
 class PrimaryContactProfiles {
-    private $id, $relationship,$first_name, $last_name, $chinese_name, $age, $language_spoken, $occupation,
-            $employer, $primary_email, $additional_email ,$cell_phone_number,$work_phone_number, $note;
+
+    private $id, $relationship, $first_name, $last_name, $chinese_name, $age, $language_spoken, $occupation,
+            $employer, $primary_email, $additional_email, $cell_phone_number, $work_phone_number, $note;
+
     function __construct($id, $relationship, $first_name, $last_name, $chinese_name, $age, $language_spoken, $occupation, $employer, $primary_email, $additional_email, $cell_phone_number, $work_phone_number, $note) {
         $this->id = $id;
         $this->relationship = $relationship;
@@ -28,6 +30,7 @@ class PrimaryContactProfiles {
         $this->work_phone_number = $work_phone_number;
         $this->note = $note;
     }
+
     function getId() {
         return $this->id;
     }
@@ -83,6 +86,7 @@ class PrimaryContactProfiles {
     function getNote() {
         return $this->note;
     }
+
     function setId($id) {
         $this->id = $id;
     }
@@ -138,7 +142,5 @@ class PrimaryContactProfiles {
     function setNote($note) {
         $this->note = $note;
     }
-
-
 
 }
