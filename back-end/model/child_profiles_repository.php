@@ -14,7 +14,7 @@ class ChildProfilesRepository {
     // return all records as an array
     public static function getChilds() {
         global $db;
-        $query = 'SELECT * FROM daycaredb.child_profiles ORDER BY id';
+        $query = "SELECT * FROM daycaredb.child_profiles ORDER BY id";
         $result = $db->query($query);
         $childs = array();
         foreach ($result as $row) {
@@ -34,7 +34,7 @@ class ChildProfilesRepository {
         global $db;
         $query = "SELECT * FROM daycaredb.child_profiles WHERE id = $childId";
         $row_count = $db->exec($query);
-        if ($row_count == 0) {
+        if ($row_count === 0) {
             return null;
         }
         $result = $db->query($query);
@@ -52,7 +52,7 @@ class ChildProfilesRepository {
         global $db;
         $query = "SELECT * FROM daycaredb.child_profiles WHERE first_name = $fname AND last_name = $lname";
         $row_count = $db->exec($query);
-        if ($row_count == 0) {
+        if ($row_count === 0) {
             return null;
         }
         $result = $db->query($query);
@@ -73,7 +73,7 @@ class ChildProfilesRepository {
         global $db;
         $query = "SELECT * FROM daycaredb.child_profiles WHERE chinese_name = $name";
         $row_count = $db->exec($query);
-        if ($row_count == 0) {
+        if ($row_count === 0) {
             return null;
         }
         $result = $db->query($query);

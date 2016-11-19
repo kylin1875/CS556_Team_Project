@@ -18,9 +18,7 @@ class EmergencyContactProfilesRepository {
         $result = $db->query($query);
         $emergencyContactProfiles = array();
         foreach ($result as $row) {
-            $emergencyContactProfile = new EmergencyContactProfiles($row['id'], $row['relationship'], 
-                    $row['first_name'], $row['last_name'], $row['chinese_name'], $row['home_phone_number'], 
-                    $row['occupation'], $row['work_time'], $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
+            $emergencyContactProfile = new EmergencyContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['home_phone_number'], $row['occupation'], $row['work_time'], $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
             $emergencyContactProfiles[] = $emergencyContactProfile;
         }
         return $emergencyContactProfiles;
@@ -36,9 +34,7 @@ class EmergencyContactProfilesRepository {
         }
         $result = $db->query($query);
         $row = $result->fetch();
-        $emergencyContactProfile = new EmergencyContactProfiles($row['id'], $row['relationship'], $row['first_name'], 
-                $row['last_name'], $row['chinese_name'], $row['home_phone_number'], $row['occupation'], $row['work_time'], 
-                $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
+        $emergencyContactProfile = new EmergencyContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['home_phone_number'], $row['occupation'], $row['work_time'], $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
         return $emergencyContactProfile;
     }
 
@@ -56,9 +52,7 @@ class EmergencyContactProfilesRepository {
         }
         $result = $db->query($query);
         foreach ($result as $row) {
-            $emergencyContactProfile = new EmergencyContactProfiles($row['id'], $row['relationship'], $row['first_name'], 
-                    $row['last_name'], $row['chinese_name'], $row['home_phone_number'], $row['occupation'], $row['work_time'], 
-                    $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
+            $emergencyContactProfile = new EmergencyContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['home_phone_number'], $row['occupation'], $row['work_time'], $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
             $emergencyContactProfiles[] = $emergencyContactProfile;
         }
         return $emergencyContactProfiles;

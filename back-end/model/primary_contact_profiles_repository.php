@@ -45,19 +45,29 @@ class PrimaryContactProfilesRepository {
         $primaryContactProfileid = array();
         $primaryContactProfileid[0] = $childId->getMum_id();
         $primaryContactProfileid[1] = $childId->getDad_id();
-        for ($i = 0; $i < 2; $i++) {
-            $query = "SELECT * FROM daycaredb.primary_contact_profiles WHERE id = $primaryContactProfileid[$i]";
-            $row_count = $db->exec($query);
-            if ($row_count == 0) {
-                return null;
-            }
-            $result = $db->query($query);
-            foreach ($result as $row) {
-                $primaryContactProfile = new PrimaryContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['age'], $row['language_spoken'], $row['occupation'], $row['employer'], $row['primary_email'], $row['additional_email'], $row['cell_phone_number'], $row['work_phone_number'], $row['note']);
-                $emergencyContactProfiles[] = $emergencyContactProfile;
-            }
-            return $primaryContactProfiles;
+
+        $query = "SELECT * FROM daycaredb.primary_contact_profiles WHERE id = $primaryContactProfileid[0] OR id = $primaryContactProfileid[1]";
+        foreach ($result as $row) {
+            $primaryContactProfile = new PrimaryContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['age'], $row['language_spoken'], $row['occupation'], $row['employer'], $row['primary_email'], $row['additional_email'], $row['cell_phone_number'], $row['work_phone_number'], $row['note']);
+            $emergencyContactProfiles[] = $emergencyContactProfile;
         }
+
+        /*
+          for ($i = 0; $i < 2; $i++) {
+          $query = "SELECT * FROM daycaredb.primary_contact_profiles WHERE id = $primaryContactProfileid[$i]";
+          $row_count = $db->exec($query);
+          if ($row_count == 0) {
+          return null;
+          }
+          $result = $db->query($query);
+          foreach ($result as $row) {
+          $primaryContactProfile = new PrimaryContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['age'], $row['language_spoken'], $row['occupation'], $row['employer'], $row['primary_email'], $row['additional_email'], $row['cell_phone_number'], $row['work_phone_number'], $row['note']);
+          $emergencyContactProfiles[] = $emergencyContactProfile;
+          }
+          }
+
+         */
+        return $primaryContactProfiles;
     }
 
     // remove one record from DB, return 1 if record remove successed or 0 if failed
