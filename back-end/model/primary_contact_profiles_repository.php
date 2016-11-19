@@ -45,21 +45,14 @@ class PrimaryContactProfilesRepository {
         $primaryContactProfileid = array();
         $primaryContactProfileid[0] = $childId->getMum_id();
         $primaryContactProfileid[1] = $childId->getDad_id();
-        for ($i = 0; $i < 2; $i++) {
-            $query = "SELECT * FROM daycaredb.primary_contact_profiles WHERE id = $primaryContactProfileid[$i]";
-            $row_count = $db->exec($query);
-            if ($row_count == 0) {
-                return null;
+        $query = "SELECT * FROM daycaredb.primary_contact_profiles WHERE id = $primaryContactProfileid[0] OR 
+            id = $primaryContactProfileid[1]";
+        foreach ($result as $row) {
+            $primaryContactProfile = new PrimaryContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['age'], $row['language_spoken'], $row['occupation'], $row['employer'], $row['primary_email'], $row['additional_email'], $row['cell_phone_number'], $row['work_phone_number'], $row['note']);
+            $emergencyContactProfiles[] = $emergencyContactProfile;
             }
-            $result = $db->query($query);
-            foreach ($result as $row) {
-                $primaryContactProfile = new PrimaryContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['age'], $row['language_spoken'], $row['occupation'], $row['employer'], $row['primary_email'], $row['additional_email'], $row['cell_phone_number'], $row['work_phone_number'], $row['note']);
-                $emergencyContactProfiles[] = $emergencyContactProfile;
-            }
-            return $primaryContactProfiles;
-        }
+          return $primaryContactProfiles;
     }
-
     // remove one record from DB, return 1 if record remove successed or 0 if failed
     public static function deletePrimaryContactProfileById($id) {
         global $db;
@@ -73,7 +66,6 @@ class PrimaryContactProfilesRepository {
     // or return 0 if insert failed
     public static function addPrimaryContactProfile($primaryContactProfile) {
         global $db;
-        $id = $primaryContactProfile->getId();
         $relationship = $primaryContactProfile->getRelationship();
         $first_name = $primaryContactProfile->getFirst_name();
         $last_name = $primaryContactProfile->getlast_name();
@@ -87,10 +79,10 @@ class PrimaryContactProfilesRepository {
         $cell_phone_number = $primaryContactProfile->getCell_phone_number();
         $work_phone_number = $primaryContactProfile->getWork_phone_number();
         $note = $primaryContactProfile->getNote();
-        $query = "INSERT INTO daycaredb.primary_contact_profiles (NULL, relationship, first_name, last_name, 
+        $query = "INSERT INTO daycaredb.primary_contact_profiles (relationship, first_name, last_name, 
                 chinese_name, age, language_spoken, occupation, employer, primary_email, additional_email, cell_phone_number,
                 work_phone_number, note) 
-                VALUES ($id, $relationship, $first_name, $last_name, 
+                VALUES ($relationship, $first_name, $last_name, 
                 $chinese_name, $age, $language_spoken, $occupation, $employer, $primary_email, $additional_email, $cell_phone_number,
                 $work_phone_number, $note)";
         $db->exec($query);
