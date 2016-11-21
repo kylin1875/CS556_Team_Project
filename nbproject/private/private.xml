@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/E:/xampp/htdocs/CS556_Team_Project/index3.php</file>
             <file>file:/E:/xampp/htdocs/CS556_Team_Project/db/daycaredb.sql</file>
+            <file>file:/E:/xampp/htdocs/CS556_Team_Project/model/emergency_contact_profiles_repository.php</file>
+            <file>file:/E:/xampp/htdocs/CS556_Team_Project/model/child_profiles_repository.php</file>
+            <file>file:/E:/xampp/htdocs/CS556_Team_Project/index.php</file>
         </group>
     </open-files>
 </project-private>

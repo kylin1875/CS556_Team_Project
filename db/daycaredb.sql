@@ -1,4 +1,4 @@
-﻿# Author: Arvin Mai & Wei Jin
+# Author: Arvin Mai & Wei Jin
 # ID: 10010
 # Subject: CS556_Project_MySQL_Configuration
 # Time: 11/03/2016
@@ -240,17 +240,20 @@ CREATE TABLE IF NOT EXISTS daycaredb.daily_records (
         REFERENCES daycaredb.child_profiles (id)
 );
 insert into daycaredb.primary_contact_profiles values
-(1,'father','xi','hua','asd',34,'english','sales','amzaon','qqq@qq.com','',4501232345,'',''),
-(2,'mother','ha','xw','wc',52,'chinese','tech','apple','123@qq.com','',1231232345,'','');
+(1,'father','xi','hua','asd',34,'english','sales','amzaon','qqq@qq.com','123@qq.com',4501232345,1234561232,'ssss'),
+(2,'mother','ha','xw','wc',52,'chinese','tech','apple','123@qq.com','1qwq@qq.com',1231232345,1231231234,'qqqqqqq');
 # (3,'father','te','qq','ww',26,'english','sales','amzaon','345@qq.com','',4561232345,'','');
 
 insert into daycaredb.emergency_contact_profiles values
-(1,'father','xi','hua','asd','','sales','weekday','',4501232345,''),
-(2,'mother','ha','xw','wc','','tech','weekday','',1231232345,'');
-# (3,'father','te','qq','ww','','sales','weekday','',4561232345,'');
+(1,'friend','hh','cs','asd',5108882222,'sales','weekday',1234561232,4501232345,'sss'),
+(2,'friend','qwe','fg','wc',510000000,'tech','weekday',1231231234,1231232345,'111qwe'),
+(3,'friend','qwe','fg','wc',510000000,'tech','weekday',1231231234,1233332345,'111qwe'),
+(4,'father','te','qq','ww',5101111111,'sales','weekday',5100122231,4561232345,'aswr');
 
 insert into daycaredb.medical_history_records values
-(1,100,35,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+(1,100,35,'2016-01-01','2016-01-01','2016-01-01','2016-01-01','2016-01-01','2016-01-01','2016-01-01','2016-01-01',
+'2016-01-01','2016-01-01','2016-01-01','2016-01-01','2016-01-01','2016-01-01','2016-01-01','2016-01-01','2016-01-01',
+'2016-01-01','2016-01-01','2016-01-01','2016-01-01','2016-01-01');
 # (2,111,45,'','','','','','','','','','','','','','','','','','','','','',''),
 # (3,120,46,'','','','','','','','','','','','','','','','','','','','','','');
 
@@ -265,10 +268,11 @@ insert into daycaredb.child_profiles values
 # (3,3,3,3,3,3,3,'2016-01-01','2016-11-09','','','due', 'xaing','yue yang', 'aa','F','5-1-1','2012-14-09','chinese','123 ss', 5133121234,'studing');
 
 insert into daycaredb.signin_records values
-(1,1,'','2016-01-01 08:10:00',null);
+(1,1,'xi hua','2016-01-01 08:10:00','2016-01-01 16:10:00');
 
 insert into daycaredb.daily_records values
-(1,1,'2016-01-01','','12:02:28',37,2,'','',1,'');
+(1,1,'2016-01-01','happy','12:02:28',37,2,'chiken','reading',1,'good');
+
 
 GRANT SELECT, INSERT, DELETE, UPDATE
 ON daycaredb.*
