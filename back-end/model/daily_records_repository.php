@@ -19,7 +19,9 @@ class DailyRecordsRepository {
         $dailyrecords = array();
         foreach ($result as $row) {
             //impelement the daily record class
-            $dailyrecord = new DailyRecords($row['id'], $row['child_id'], $row['record_date'], $row['emotion'], $row['sleep_duration'], $row['body_temperature'], $row['defecation'], $row['meal'], $row['activity'], $row['defecation_at_home'], $row['sleep_status']);
+            $dailyrecord = new DailyRecords($row['id'], $row['child_id'], $row['record_date']
+                , $row['emotion'], $row['sleep_duration'], $row['body_temperature'], 
+                 $row['defecation'], $row['meal'], $row['activity'], $row['defecation_at_home'], $row['sleep_status']);
             $dailyrecords[] = $dailyrecord;
         }
         return $dailyrecords;
@@ -29,14 +31,14 @@ class DailyRecordsRepository {
     public static function getDailyRecordById($id) {
         global $db;
         $query = "SELECT * FROM daycaredb.daily_records WHERE id = $id";
-        $row_count = $db->exec($query);
-        if ($row_count === 0) {
-            return null;
-        }
         $result = $db->query($query);
-        $row = $result->fetch();
-        $dailyrecord = new DailyRecords($row['id'], $row['child_id'], $row['record_date'], $row['emotion'], $row['sleep_duration'], $row['body_temperature'], $row['defecation'], $row['meal'], $row['activity'], $row['defecation_at_home'], $row['sleep_status']);
-        return $dailyrecord;
+        if ($result) {
+            $row = $result->fetch();
+            $dailyrecord = new DailyRecords($row['id'], $row['child_id'], $row['record_date'], $row['emotion'], $row['sleep_duration'], $row['body_temperature'], $row['defecation'], $row['meal'], $row['activity'], $row['defecation_at_home'], $row['sleep_status']);
+            return $dailyrecord;
+        } else {
+            return NULL;
+        }
     }
 
     // return all records match the child id, or NULL if no match
@@ -44,17 +46,17 @@ class DailyRecordsRepository {
         global $db;
         $dailyrecords = array();
         $query = "SELECT * FROM daycaredb.daily_records WHERE child_id = $childId";
-        $row_count = $db->exec($query);
-        if ($row_count === 0) {
-            return null;
-        }
         $result = $db->query($query);
-        foreach ($result as $row) {
-            //impelement the daily record class
-            $dailyrecord = new DailyRecords($row['id'], $row['child_id'], $row['record_date'], $row['emotion'], $row['sleep_duration'], $row['body_temperature'], $row['defecation'], $row['meal'], $row['activity'], $row['defecation_at_home'], $row['sleep_status']);
-            $dailyrecords[] = $dailyrecord;
+        if ($result) {
+            foreach ($result as $row) {
+                //impelement the daily record class
+                $dailyrecord = new DailyRecords($row['id'], $row['child_id'], $row['record_date'], $row['emotion'], $row['sleep_duration'], $row['body_temperature'], $row['defecation'], $row['meal'], $row['activity'], $row['defecation_at_home'], $row['sleep_status']);
+                $dailyrecords[] = $dailyrecord;
+            }
+            return $dailyrecords;
+        } else {
+            return NULL;
         }
-        return $dailyrecords;
     }
 
     // 1. return all records between a period of date, or NULL if no match
@@ -63,28 +65,28 @@ class DailyRecordsRepository {
         global $db;
         $dailyrecords = array();
         if ($finalDate == NULL) {
-            $query = "SELECT * FROM daycaredb.daily_records WHERE record_date = $initialDate";
+            $query = "SELECT * FROM daycaredb.daily_records WHERE record_date = '$initialDate'";
         } else {
-            $query = "SELECT * FROM daycaredb.daily_records WHERE record_date BETWEEN $initialDate AND $finalDate";
-        }
-        $row_count = $db->exec($query);
-        if ($row_count == 0) {
-            return null;
+            $query = "SELECT * FROM daycaredb.daily_records WHERE record_date BETWEEN '$initialDate' AND '$finalDate'";
         }
         $result = $db->query($query);
-        foreach ($result as $row) {
-            //impelement the daily record class
-            $dailyrecord = new DailyRecords($row['id'], $row['child_id'], $row['record_date'], $row['emotion'], $row['sleep_duration'], $row['body_temperature'], $row['defecation'], $row['meal'], $row['activity'], $row['defecation_at_home'], $row['sleep_status']);
-            $dailyrecords[] = $dailyrecord;
+        if ($result) {
+            foreach ($result as $row) {
+                //impelement the daily record class
+                $dailyrecord = new DailyRecords($row['id'], $row['child_id'], $row['record_date'], $row['emotion'], $row['sleep_duration'], $row['body_temperature'], $row['defecation'], $row['meal'], $row['activity'], $row['defecation_at_home'], $row['sleep_status']);
+                $dailyrecords[] = $dailyrecord;
+            }
+            return $dailyrecords;
+        } else {
+            return NULL;
         }
-        return $dailyrecords;
     }
 
     // remove one record from DB, return 1 if record remove successed or 0 if failed
     public static function deleteDailyRecordById($id) {
         global $db;
         $query = "DELETE FROM daycaredb.daily_records WHERE id = $id";
-        $row_count = $db->exec($query);
+        $row_count = $db->exec($query);   
         return $row_count;
     }
 
@@ -104,12 +106,10 @@ class DailyRecordsRepository {
         $defecation_at_home = $dailyRecord->getDefecation_at_home();
         $sleep_status = $dailyRecord->getSleep_status();
         $query = "INSERT INTO daycaredb.daily_records (child_id, record_date, emotion, sleep_duration, body_temperature, 
-            defecation, meal, activity, defecation_at_home, sleep_status) VALUES ($child_id, $record_date, $emotion, $sleep_duration, $body_temperature, 
-            $defecation, $meal, $activity, $defecation_at_home, $sleep_status)";
-        $db->exec($query);
-        $query = "SELECT last_insert_id();";
-        $dailyRecordId = $db->exec($query);
-        return $dailyRecordId;
+            defecation, meal, activity, defecation_at_home, sleep_status) VALUES ($child_id, '$record_date', '$emotion', '$sleep_duration', $body_temperature, 
+            $defecation, '$meal', '$activity', $defecation_at_home, '$sleep_status')";
+        $db->query($query);
+        return $db->lastInsertId();
     }
 
 }

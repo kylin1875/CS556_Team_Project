@@ -18,7 +18,9 @@ class EmergencyContactProfilesRepository {
         $result = $db->query($query);
         $emergencyContactProfiles = array();
         foreach ($result as $row) {
-            $emergencyContactProfile = new EmergencyContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['home_phone_number'], $row['occupation'], $row['work_time'], $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
+            $emergencyContactProfile = new EmergencyContactProfiles($row['id'], $row['relationship'], $row['first_name'],
+                    $row['last_name'], $row['chinese_name'], $row['home_phone_number'], $row['occupation'], 
+                    $row['work_time'], $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
             $emergencyContactProfiles[] = $emergencyContactProfile;
         }
         return $emergencyContactProfiles;
@@ -28,41 +30,41 @@ class EmergencyContactProfilesRepository {
     public static function getEmergencyContactProfileById($id) {
         global $db;
         $query = "SELECT * FROM daycaredb.emergency_contact_profiles WHERE id = $id";
-        $row_count = $db->exec($query);
-        if ($row_count == 0) {
-            return null;
-        }
         $result = $db->query($query);
-        $row = $result->fetch();
-        $emergencyContactProfile = new EmergencyContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['home_phone_number'], $row['occupation'], $row['work_time'], $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
-        return $emergencyContactProfile;
+        if ($result) {
+            $row = $result->fetch();
+            $emergencyContactProfile = new EmergencyContactProfiles($row['id'],$row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['home_phone_number'], $row['occupation'], $row['work_time'], $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
+            return $emergencyContactProfile;
+        } else {
+            return NULL;
+        }
     }
 
     // return all records match the child id, or NULL if no match
     public static function getEmergencyContactProfilesByChildId($childId) {
         global $db;
-        $child = DailyRecordsRepository::getChildById($childId);
+        $child = ChildProfilesRepository::getChildById($childId);
         $emergencyContactProfiles = array();
         $emergencyContactProfileid1 = $child->getEmer_1_id();
         $emergencyContactProfileid2 = $child->getEmer_2_id();
         $query = "SELECT * FROM daycaredb.emergency_contact_profiles WHERE id = $emergencyContactProfileid1 or id = $emergencyContactProfileid2";
-        $row_count = $db->exec($query);
-        if ($row_count == 0) {
-            return null;
-        }
         $result = $db->query($query);
-        foreach ($result as $row) {
-            $emergencyContactProfile = new EmergencyContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['home_phone_number'], $row['occupation'], $row['work_time'], $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
-            $emergencyContactProfiles[] = $emergencyContactProfile;
+        if ($result) {
+            foreach ($result as $row) {
+                $emergencyContactProfile = new EmergencyContactProfiles($row['id'], $row['relationship'], $row['first_name'], $row['last_name'], $row['chinese_name'], $row['home_phone_number'], $row['occupation'], $row['work_time'], $row['work_phone_number'], $row['cell_phone_number'], $row['note']);
+                $emergencyContactProfiles[] = $emergencyContactProfile;
+            }
+            return $emergencyContactProfiles;
+        } else {
+            return NULL;
         }
-        return $emergencyContactProfiles;
     }
 
     // remove one record from DB, return 1 if record remove successed or 0 if failed
     public static function deleteEmergencyContactProfileById($id) {
         global $db;
-        $query = "DELETE FROM daycaredb.emergency_contact_profiles WHERE id = $id";
-        $row_count = $db->exec($query);
+        $query = "DELETE FROM daycaredb.emergency_contact_profiles WHERE id = $id"; 
+        $row_count = $db->exec($query);   
         return $row_count;
     }
 
@@ -83,12 +85,10 @@ class EmergencyContactProfilesRepository {
         $note = $emergencyContactProfile->getNote();
         $query = "INSERT INTO daycaredb.emergency_contact_profiles (relationship, first_name, last_name, 
                 chinese_name, home_phone_number, occupation, work_time, work_phone_number, cell_phone_number, note) 
-                VALUES ($relationship, $first_name, $last_name, 
-                $chinese_name, $home_phone_number, $occupation, $work_time, $work_phone_number, $cell_phone_number, $note)";
-        $db->exec($query);
-        $query = "SELECT last_insert_id();";
-        $emergencyContactProfileId = $db->exec($query);
-        return $emergencyContactProfileId;
+                VALUES ('$relationship', '$first_name', '$last_name', 
+                '$chinese_name', $home_phone_number, '$occupation', '$work_time', $work_phone_number, $cell_phone_number, '$note')";
+        $db->query($query);echo $db->lastInsertId() . '----------';
+        return $db->lastInsertId();
     }
 
 }

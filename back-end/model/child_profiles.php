@@ -43,7 +43,7 @@ class ChildProfiles {
         return $this->id;
     }
 
-    function getMum_id() {
+    function getMom_id() {
         return $this->mom_id;
     }
 
