@@ -8,14 +8,14 @@
  * Date and Time: Nov 20, 2016 5:08:57 PM 
  * Project Name: CS556_Team_Project 
  */
-include_once 'model/child_profiles_repository.php';
-include_once 'model/child_profiles.php';
-include_once 'model/daily_records_repository.php';
-include_once 'model/daily_records.php';
-include_once 'model/emergency_contact_profiles_repository.php';
-include_once 'model/emergency_contact_profiles.php';
-include_once 'db/dbcontext.php';
-require 'db/db_connect.php';
+include_once '../model/child_profiles_repository.php';
+include_once '../model/child_profiles.php';
+include_once '../model/daily_records_repository.php';
+include_once '../model/daily_records.php';
+include_once '../model/emergency_contact_profiles_repository.php';
+include_once '../model/emergency_contact_profiles.php';
+include_once '../db/db_context.php';
+require '../db/db_connect.php';
 $db = DBContext::getDB();
 
 //$child = ChildProfilesRepository::getChildById(1);

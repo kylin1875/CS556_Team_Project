@@ -11,8 +11,8 @@
 class DBContext {
 
     private static $dsn = 'mysql:host=localhost;dbname=daycaredb';
-    private static $username = 'admin';
-    private static $passwd = 'pass@word';
+    private static $username = 'root';
+    private static $passwd = 'johnson5414';
     private static $db;
 
     private function __construct() {

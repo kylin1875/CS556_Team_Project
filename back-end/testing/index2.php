@@ -11,14 +11,14 @@
 
 
 
-include_once 'model/child_profiles_repository.php';
-include_once 'model/child_profiles.php';
-include_once 'model/daily_records_repository.php';
-include_once 'model/daily_records.php';
-include_once 'model/emergency_contact_profiles_repository.php';
-include_once 'model/emergency_contact_profiles.php';
-include_once 'db/dbcontext.php';
-require 'db/db_connect.php';
+include_once '../model/child_profiles_repository.php';
+include_once '../model/child_profiles.php';
+include_once '../model/daily_records_repository.php';
+include_once '../model/daily_records.php';
+include_once '../model/emergency_contact_profiles_repository.php';
+include_once '../model/emergency_contact_profiles.php';
+include_once '../db/db_context.php';
+require '../db/db_connect.php';
 $db = DBContext::getDB();
 
 //$dailyrecords = DailyRecordsRepository::getDailyRecords();
