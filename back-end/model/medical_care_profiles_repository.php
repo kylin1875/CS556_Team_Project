@@ -21,11 +21,11 @@ class MedicalCareProfilesRepository {
             // fetch db data to profile variable
             $medicalCareProfile = new MedicalCareProfiles($row['id'], $row['pcp_name'], $row['clinic_name'], $row['address']
                     , $row['phone_number'], $row['primary_health_insurance_provider'], $row['primary_health_insurance_number']
-                    , $row['additinal_health_insurance_provider'], $row['additional_health_insurance_number']);
+                    , $row['additional_health_insurance_provider'], $row['additional_health_insurance_number']);
             // add new profile to array
             $medicalCareProfiles[] = $medicalCareProfile;
         }
-        return $medicalCareProfile;
+        return $medicalCareProfiles;
     }
 
     // return one profile search by id, or NULL if no match
@@ -33,11 +33,11 @@ class MedicalCareProfilesRepository {
         global $db;
         $query = "SELECT * FROM daycaredb.medical_care_profiles WHERE id = $id";
         $result = $db->query($query);
-        if ($result !== NULL) {
+        if ($result->rowCount() === 1) {
             $row = $result->fetch();
             $medicalCareProfile = new MedicalCareProfiles($row['id'], $row['pcp_name'], $row['clinic_name'], $row['address']
                     , $row['phone_number'], $row['primary_health_insurance_provider'], $row['primary_health_insurance_number']
-                    , $row['additinal_health_insurance_provider'], $row['additional_health_insurance_number']);
+                    , $row['additional_health_insurance_provider'], $row['additional_health_insurance_number']);
             return $medicalCareProfile;
         } else {
             return NULL;
@@ -47,17 +47,25 @@ class MedicalCareProfilesRepository {
     // return profile match the child id, or NULL if no match
     public static function getMedicalCareProfileByChildId($childId) {
         global $db;
-        $query = "SELECT * FROM daycaredb.medical_care_profiles WHERE child_id = $childId";
+        $query = "SELECT medical_care_id FROM daycaredb.child_profiles WHERE id = $childId";
         $result = $db->query($query);
-        if ($result !== NULL) {
-            $row = $result->fetch();
-            $medicalCareProfile = new MedicalCareProfiles($row['id'], $row['pcp_name'], $row['clinic_name'], $row['address']
-                    , $row['phone_number'], $row['primary_health_insurance_provider'], $row['primary_health_insurance_number']
-                    , $row['additinal_health_insurance_provider'], $row['additional_health_insurance_number']);
-            return $medicalCareProfile;
-        } else {
+        $medical_care_profile_id = NULL;
+        if ($result->rowCount() !== 1) {
             return NULL;
         }
+        $row = $result->fetch();
+        $medical_care_profile_id = $row['medical_care_id'];
+        $query = "SELECT * FROM daycaredb.medical_care_profiles WHERE id = $medical_care_profile_id";
+        $result = $db->query($query);
+        $medical_care_profile_id = NULL;
+        if ($result->rowCount() !== 1) {
+            return NULL;
+        }
+        $row = $result->fetch();
+        $medicalCareProfile = new MedicalCareProfiles($row['id'], $row['pcp_name'], $row['clinic_name'], $row['address']
+                , $row['phone_number'], $row['primary_health_insurance_provider'], $row['primary_health_insurance_number']
+                , $row['additional_health_insurance_provider'], $row['additional_health_insurance_number']);
+        return $medicalCareProfile;
     }
 
     // remove one profile from DB, return 1 if profile remove successed or 0 if failed

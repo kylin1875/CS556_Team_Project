@@ -14,7 +14,7 @@ class MedicalCareProfiles {
     private $id, $pcp_name, $clinic_name, $address, $phone_number, $primary_health_insurance_provider,
             $primary_health_insurance_number, $additional_health_insurance_provider, $additional__health_insurance_number;
 
-    function __construct($id, $pcp_name, $clinic_name, $address, $phone_number, $primary_health_insurance_provider, $primary_health_insurance_number, $additional_health_insurance_provider, $additional__health_insurance_number) {
+    function __construct($id, $pcp_name, $clinic_name, $address, $phone_number, $primary_health_insurance_provider, $primary_health_insurance_number, $additional_health_insurance_provider, $additional_health_insurance_number) {
         $this->id = $id;
         $this->pcp_name = $pcp_name;
         $this->clinic_name = $clinic_name;
@@ -23,7 +23,7 @@ class MedicalCareProfiles {
         $this->primary_health_insurance_provider = $primary_health_insurance_provider;
         $this->primary_health_insurance_number = $primary_health_insurance_number;
         $this->additional_health_insurance_provider = $additional_health_insurance_provider;
-        $this->additional__health_insurance_number = $additional__health_insurance_number;
+        $this->additional_health_insurance_number = $additional_health_insurance_number;
     }
 
     function getId() {
@@ -58,7 +58,7 @@ class MedicalCareProfiles {
         return $this->additional_health_insurance_provider;
     }
 
-    function getAdditional__health_insurance_number() {
+    function getAdditional_health_insurance_number() {
         return $this->additional__health_insurance_number;
     }
 
@@ -96,6 +96,20 @@ class MedicalCareProfiles {
 
     function setAdditional__health_insurance_number($additional__health_insurance_number) {
         $this->additional__health_insurance_number = $additional__health_insurance_number;
+    }
+
+    function convertAsArray() {
+        $result = array();
+        $result[] = $this->getId();
+        $result[] = $this->getPcp_name();
+        $result[] = $this->getClinic_name();
+        $result[] = $this->getAddress();
+        $result[] = $this->getPhone_number();
+        $result[] = $this->getPrimary_health_insurance_provider();
+        $result[] = $this->getPrimary_health_insurance_number();
+        $result[] = $this->getAdditional_health_insurance_provider();
+        $result[] = $this->getAdditional_health_insurance_number();
+        return $result;
     }
 
 }
